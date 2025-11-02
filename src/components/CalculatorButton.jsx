@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CalculatorButton = ({children}) => {
+const CalculatorButton = ({children, onClick}) => {
 
     let styles = "w-full h-12 font-bold rounded-lg shadow-md cursor-pointer active:scale-95 transition-transform duration-100"
 
@@ -17,7 +17,7 @@ const CalculatorButton = ({children}) => {
     }
 
     return (
-    <button className={styles}>
+    <button className={styles} onClick={onClick}>
         {children}
     </button>
     )
