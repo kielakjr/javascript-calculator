@@ -6,23 +6,53 @@ const calculatorButtons = [
     'AC', "/", "X", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "=", "0", ".",
 ]
 
-const operators = ['/', 'X', '-', '+', '=', '*'];
+const operators = ['/', 'X', '-', '+', '*'];
 
 const getCalculatorValue = (expr, button) => {
+
+    if (button === "AC") {
+        return "0";
+    }
+
+    if (expr.length > 16) {
+        return expr;
+    }
+
+    if (button === ".") {
+        if (operators.includes(expr.at(-1)) || expr.at(-1) === ".") {
+            return expr;
+        }
+    }
+
+    if (button === "=") {
+        if (operators.includes(expr.at(-1))) {
+            return expr.slice(0, -1);
+        }
+        try {
+            const result = eval(expr.replace("X", "*"));
+            if (Number.isInteger(result)) {
+                return result.toString();
+            } else {
+                return result.toFixed(4).toString();
+            }
+        } catch {
+            return "Error";
+        }
+    }
+
     if (operators.includes(button)) {
         if (operators.includes(expr.at(-1))) {
             return expr.slice(0, -1) + (button === 'X' ? '*' : button);
         }
-        if (expr === "0"){
+        if (expr === "0") {
             return expr;
         }
         return expr + (button === 'X' ? '*' : button);
-    } else if (expr === "0") {
+    }
+    if (expr === "0") {
         return button;
     }
-     else {
-        return expr + button;
-    }
+    return expr + button;
 }
 
 const Calculator = () => {
@@ -30,17 +60,7 @@ const Calculator = () => {
     const [input, setInput] = useState("0");
 
     const handleButtonClick = (value) => {
-        if (value === "AC") {
-            setInput("0");
-        } else if (value === "=") {
-            try {
-                setInput(eval(input.replace("X", "*")));
-            } catch {
-                setInput("Error");
-            }
-        } else {
-            setInput((prev) => (getCalculatorValue(prev, value)));
-        }
+        setInput((prev) => (getCalculatorValue(prev, value)));
     };
 
     return (
