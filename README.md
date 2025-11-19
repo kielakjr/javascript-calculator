@@ -1,16 +1,52 @@
-# React + Vite
+# JavaScript Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple calculator application built using JavaScript and React.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a web-based calculator that provides basic arithmetic operations. It was created as part of the [freeCodeCamp](https://www.freecodecamp.org/) curriculum to practice front-end development skills with React. The UI styling is implemented using Tailwind CSS.
 
-## React Compiler
+## Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+You can view the live demo of the calculator here: [https://kielakjr.github.io/javascript-calculator/](https://kielakjr.github.io/javascript-calculator/)
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **JavaScript (ES6+)**
+- **React**
+- **HTML5**
+- **CSS3**
+- **Tailwind CSS** (used for styling)
+
+The project is structured as a modern single-page application (SPA), likely set up using a tool like Vite or Create React App.
+
+## Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+You will need to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) (or [Yarn](https://yarnpkg.com/)) installed on your machine.
+
+### Installation
+
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/kielakjr/javascript-calculator.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd javascript-calculator
+   ```
+3. Install NPM packages:
+   ```sh
+   npm install
+   ```
+
+### Running the Application
+
+To run the app in development mode:
+```sh
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) (or the address shown in your terminal) to view it in the browser.
