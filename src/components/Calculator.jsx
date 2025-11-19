@@ -14,16 +14,6 @@ const getCalculatorValue = (expr, button) => {
         return "0";
     }
 
-    if (expr.length > 16) {
-        return expr;
-    }
-
-    if (button === ".") {
-        if (operators.includes(expr.at(-1)) || expr.at(-1) === ".") {
-            return expr;
-        }
-    }
-
     if (button === "=") {
         if (operators.includes(expr.at(-1))) {
             return expr.slice(0, -1);
@@ -33,17 +23,45 @@ const getCalculatorValue = (expr, button) => {
             if (Number.isInteger(result)) {
                 return result.toString();
             } else {
-                return result.toFixed(4).toString();
+                return parseFloat(result.toFixed(4)).toString();
             }
         } catch {
             return "Error";
         }
     }
 
+    if (expr.length > 16) {
+        return expr;
+    }
+
+    if (button === ".") {
+        if (operators.includes(expr.at(-1)) || expr.at(-1) === ".") {
+            return expr;
+        }
+        if (expr === "0") {
+            return "0.";
+        }
+        const parts = expr.split(/[\+\-\*\/]/);
+        if (parts.at(-1).includes(".")) {
+            return expr;
+        }
+    }
+
     if (operators.includes(button)) {
         if (operators.includes(expr.at(-1))) {
+            if (button === '-' && !operators.includes(expr.at(-2)) && expr.at(-1) !== '-') {
+                return expr + button;
+            }
+            if (operators.includes(expr.at(-2))) {
+                return expr.slice(0, -2) + (button === 'X' ? '*' : button);
+            }
             return expr.slice(0, -1) + (button === 'X' ? '*' : button);
         }
+
+        if (expr.at(-1) === ".") {
+            return expr.slice(0, -1) + (button === 'X' ? '*' : button);
+        }
+
         if (expr === "0") {
             return expr;
         }
