@@ -6,6 +6,25 @@ const calculatorButtons = [
     'AC', "/", "X", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "=", "0", ".",
 ]
 
+const operators = ['/', 'X', '-', '+', '=', '*'];
+
+const getCalculatorValue = (expr, button) => {
+    if (operators.includes(button)) {
+        if (operators.includes(expr.at(-1))) {
+            return expr.slice(0, -1) + (button === 'X' ? '*' : button);
+        }
+        if (expr === "0"){
+            return expr;
+        }
+        return expr + (button === 'X' ? '*' : button);
+    } else if (expr === "0") {
+        return button;
+    }
+     else {
+        return expr + button;
+    }
+}
+
 const Calculator = () => {
 
     const [input, setInput] = useState("0");
@@ -20,7 +39,7 @@ const Calculator = () => {
                 setInput("Error");
             }
         } else {
-            setInput((prev) => (prev === "0" ? value : prev + value));
+            setInput((prev) => (getCalculatorValue(prev, value)));
         }
     };
 
